@@ -1,0 +1,26 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Environment files
+.venv
+.env
+
+# Mac folder attributes
+.DS_Store
+
+# VSCode folder 
+.vscode/
+
+# Sensitive data
+full_resume.yaml
+full_resume.json
+private_info.json
+
+# Output data
+data/*/
+!data/test_*/

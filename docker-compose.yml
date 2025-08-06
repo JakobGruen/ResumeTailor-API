@@ -1,0 +1,60 @@
+services:
+  # PDF Service (internal only) - built from private GitHub repo via SSH
+  pdf-service:
+    build:
+      context: https://github.com/JakobGruen/ResumeGen.git
+      dockerfile: Dockerfile.pdf-service
+      ssh:
+        - default
+    networks:
+      - internal
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp:unconfined
+
+  # ResumeGen API (internal only) - built from private GitHub repo via SSH
+  resumegen-api:
+    build:
+      context: https://github.com/JakobGruen/ResumeGen.git
+      dockerfile: Dockerfile.api
+      ssh:
+        - default
+    depends_on:
+      pdf-service:
+        condition: service_healthy
+    environment:
+      - PDF_SERVICE_URL=http://pdf-service:3000
+    networks:
+      - internal
+
+  # Main ResumeTailor API (only this is exposed publicly)
+  resumetailor-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.resumetailor
+    depends_on:
+      resumegen-api:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - RESUMEGEN_API_URL=http://resumegen-api:8000
+      - PDF_SERVICE_URL=http://pdf-service:3000
+      # Map your .env variables to what the app expects
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LANGCHAIN_API_KEY=${LANGSMITH_API_KEY}
+      - LANGCHAIN_TRACING_V2=${LANGSMITH_TRACING}
+      - LANGCHAIN_PROJECT=${LANGSMITH_PROJECT}
+    networks:
+      - internal
+      - default # Add default network for internet access
+    volumes:
+      # Mount data directory for development (optional)
+      - ./data:/app/data
+
+networks:
+  internal:
+    driver: bridge

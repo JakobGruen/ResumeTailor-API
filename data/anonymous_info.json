@@ -1,0 +1,13 @@
+{
+  "name": "Alex",
+  "surname": "Smith",
+  "date_of_birth": "01/01/1990",
+  "address": "123 Example Street",
+  "city": "Sampletown",
+  "country": "Exampleland",
+  "zip_code": "12345",
+  "email": "alex.smith@example.com",
+  "phone": "+1234567890",
+  "linkedin": "https://www.linkedin.com/in/alex-smith-123456789",
+  "github": "https://github.com/alexsmith"
+}

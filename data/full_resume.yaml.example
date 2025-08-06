@@ -1,0 +1,237 @@
+# ========================================
+# RESUME CONFIGURATION FILE
+# ========================================
+# This file defines your complete resume data according to the ResumeTailor schema.
+# Fill in your information following the structure below.
+#
+#
+# REQUIRED vs OPTIONAL fields:
+# - Fields marked with "# REQUIRED" must be filled
+# - Fields marked with "# OPTIONAL" can be omitted or set to `null`
+# - Some sections can be entirely omitted if not applicable (omit by setting to `section: null`)
+#
+#
+# IMPORTANT: Maintain the YAML structure and indentation!
+# For YAML syntax help, see: https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+#
+#
+# TIPS FOR FILLING YOUR RESUME:
+#
+# 1. ADD MAXIMUM DETAIL: Include as much information as possible - the AI will filter what's relevant for each job
+# 2. DON'T WORRY ABOUT SOUNDING GOOD: Use simple bullet points, keywords, or basic descriptions - AI will polish the language
+# 3. INCLUDE EVERYTHING: Add all skills, experiences, projects, even if they seem minor - you never know what might be relevant
+# 4. USE SIMPLE LANGUAGE: Basic descriptions are fine (e.g., "used Python for data analysis" vs crafted prose)
+# 5. ADD NUMBERS/METRICS: Include any quantifiable results, even rough estimates (e.g., "improved by ~20%", "managed 5 people")
+# 6. LIST ALL TECHNOLOGIES: Include every tool, framework, language you've used, even briefly
+# 7. DON'T SELF-FILTER: Let the AI decide what's relevant - include experiences from different industries/roles
+# 8. BE FACTUAL ONLY: Focus on what you actually did, not how impressive it sounds
+#
+# Remember: This is RAW DATA for the AI to process - completeness matters more than polish!
+# The AI will tailor, refine, and make everything sound professional for specific jobs.
+#
+# ========================================
+
+# Personal Information Section
+# All fields in this section are OPTIONAL but recommended
+personal_information:
+  name: Alex # OPTIONAL: Your first name
+  surname: Smith # OPTIONAL: Your last name/surname
+  date_of_birth: "01/01/1990" # OPTIONAL: Format DD/MM/YYYY in quotes
+  address: "123 Example Street" # OPTIONAL: Your street address
+  city: Sampletown # OPTIONAL: City of residence
+  country: Exampleland # OPTIONAL: Country of residence
+  zip_code: "12345" # OPTIONAL: Postal/ZIP code in quotes
+  email: "alex.smith@example.com" # OPTIONAL: Your email address
+  phone: "+1234567890" # OPTIONAL: Phone with country prefix
+  linkedin: "https://www.linkedin.com/in/alex-smith-123456789" # OPTIONAL: Full LinkedIn URL
+  github: "https://github.com/alexsmith" # OPTIONAL: GitHub profile URL
+
+# Education Section - OPTIONAL (entire section can be omitted)
+# List your educational background in reverse chronological order (most recent first)
+education:
+  # NOTE: You can add as many education entries as needed by copying the structure below
+  - degree: Master's Degree # REQUIRED: Degree name (e.g., BSc, MSc, PhD, Bachelor's)
+    institution: Example University # REQUIRED: Name of educational institution
+    field_of_study: Computer Science # REQUIRED: Your major/field of study
+    final_evaluation_grade: 3.8 # OPTIONAL: Final GPA/grade (number or string)
+    honors: magna cum laude # OPTIONAL: Any honors received
+    start_year: 2019 # OPTIONAL: Year you started (integer)
+    year_of_completion: 2021 # OPTIONAL: Year you graduated (integer)
+
+    # Grading System Info - OPTIONAL (entire subsection can be omitted)
+    # Provides info for AI to judge course grades
+    grading_system:
+      country: Exampleland # REQUIRED if grading_system provided
+      high: 4.0 # REQUIRED if grading_system provided: highest possible grade
+      low: 0.0 # REQUIRED if grading_system provided: lowest possible grade
+      passing_grade: 2.0 # REQUIRED if grading_system provided: minimum passing grade
+
+    # Courses - OPTIONAL (entire subsection can be omitted)
+    courses:
+      # NOTE: Add as many courses as you want by copying the course structure
+      - name: Advanced Algorithms # REQUIRED: Course name
+        description: Studied advanced algorithmic techniques and their applications. # OPTIONAL: Course description
+        grade: 4.0 # OPTIONAL: Grade received (number or string)
+        acquired_skills: # OPTIONAL: Skills learned (list of strings)
+          - Algorithm design # Add as many skills as needed
+          - Complexity analysis
+          - Data structures
+          - Problem solving
+      - name: Machine Learning
+        description: Explored supervised and unsupervised learning methods.
+        grade: 3.7
+        acquired_skills:
+          - Regression
+          - Classification
+          - Clustering
+          - Model evaluation
+
+    # Educational Projects - OPTIONAL (entire subsection can be omitted)
+    projects:
+      # NOTE: Add as many educational projects as you want by copying the structure below
+      - name: Master's Thesis # REQUIRED: Project name
+        description: Developed a novel approach for data classification using neural networks. # OPTIONAL: Project description
+        grade: 3.9 # OPTIONAL: Grade/evaluation received
+        acquired_skills: # OPTIONAL: Skills learned (list of strings)
+          - Deep learning # Add as many skills as needed
+          - Data analysis
+          - Scientific writing
+
+# Work Experience Section - OPTIONAL (entire section can be omitted)
+# List your work experience in reverse chronological order (most recent first)
+work_experience:
+  # NOTE: You can add as many work positions as needed by copying the structure below
+  - job_title: Software Engineer # REQUIRED: Your job title/position
+    company: ExampleTech Solutions # OPTIONAL: Company name
+    employment_type: Full-time # OPTIONAL: Employment type (Full-time, Part-time, Contract, etc.)
+    employment_period: "07/2021 - Present" # OPTIONAL: Period in quotes (e.g., "MM/YYYY - MM/YYYY" or "MM/YYYY - Present")
+    location: Sampletown, Exampleland # OPTIONAL: Job location
+    industry: Technology # OPTIONAL: Industry sector
+    responsibilities: # OPTIONAL: Job duties (list of strings)
+      - Developed and maintained web applications # Add as many responsibilities as needed
+      - Collaborated with cross-functional teams
+      - Implemented new features and fixed bugs
+    acquired_skills: # OPTIONAL: Technical skills used (list of strings)
+      - JavaScript # Add as many skills as needed
+      - React
+      - Node.js
+      - Teamwork
+      - Agile development
+    achievements: # OPTIONAL: Notable accomplishments (list of strings)
+      - Improved application performance by 30% # Add as many achievements as needed
+  - job_title: Junior Developer
+    company: StartupCorp
+    employment_type: Full-time
+    employment_period: "01/2020 - 06/2021"
+    location: Techville, Exampleland
+    industry: Software Development
+    responsibilities:
+      - Built responsive web interfaces using HTML, CSS, and JavaScript
+      - Participated in code reviews and team meetings
+      - Assisted in debugging and testing applications
+      - Maintained legacy code and updated documentation
+    acquired_skills:
+      - HTML/CSS
+      - JavaScript
+      - Git version control
+      - Code debugging
+      - Software testing
+      - Team collaboration
+    achievements:
+      - Successfully delivered 15+ feature implementations
+      - Reduced bug count by 25% through improved testing practices
+
+# Projects Section - OPTIONAL (entire section can be omitted)
+# List your personal/side projects that showcase your skills
+projects:
+  # NOTE: You can add as many projects as needed by copying the structure below
+  - name: OpenSourceHelper # REQUIRED: Project name
+    link: "https://github.com/alexsmith/opensourcehelper" # OPTIONAL: Link to project (GitHub, website, etc.)
+    platform: GitHub # OPTIONAL: Platform where hosted (GitHub, personal website, etc.)
+    description: # OPTIONAL: Brief project description
+      - Tool for managing and contributing to open source projects # Add as many lines as needed
+    acquired_skills: # OPTIONAL: Technical skills used (list of strings)
+      - Open source collaboration # Add as many skills as needed
+      - Project management
+      - Python
+    achievements: # OPTIONAL: Notable outcomes/recognition (list of strings)
+      - 100+ stars on GitHub # Add as many achievements as needed
+
+# Achievements Section - OPTIONAL (entire section can be omitted)
+# List notable accomplishments, awards, or recognitions
+achievements:
+  # NOTE: You can add as many achievements as needed by copying the structure below
+  - title: Employee of the Month # REQUIRED: Achievement title
+    description: # REQUIRED: Achievement description
+      - Received Employee of the Month at ExampleTech Solutions for outstanding performance. # Add as many lines as needed
+    relevance: # OPTIONAL: Relevance to career/academic growth
+      - Professional recognition # Add as many lines as needed
+
+# Certifications Section - OPTIONAL (entire section can be omitted)
+# List professional certifications and credentials
+certifications:
+  # NOTE: You can add as many certifications as needed by copying the structure below
+  - name: Certified Cloud Developer # REQUIRED: Certification name
+    issuing_organization: CloudCert Inc. # REQUIRED: Organization that issued the certification
+    link: "https://certs.example.com/alexsmith/clouddev" # OPTIONAL: Verification link
+    description: # OPTIONAL: Certification description (list of strings)
+      - Demonstrated expertise in cloud application development and deployment. # Add as many lines as needed
+    acquired_skills: # OPTIONAL: Skills gained from certification (list of strings)
+      - Cloud computing # Add as many skills as needed
+      - DevOps
+
+# Publications Section - OPTIONAL (entire section can be omitted)
+# List academic papers, articles, or other publications you've authored
+publications:
+  # NOTE: You can add as many publications as needed by copying the structure below
+  - title: "A Study on Example Algorithms" # REQUIRED: Publication title
+    authors: "Alex Smith, Jamie Doe" # REQUIRED: All authors (as single string)
+    publisher: "Journal of Computer Science" # OPTIONAL: Publisher/Journal name
+    publication_date: "2022-05-01" # OPTIONAL: Publication date (YYYY-MM-DD format)
+    link: "https://doi.org/10.1234/example.2022.001" # OPTIONAL: DOI or publication link
+    description: # OPTIONAL: description (list of strings)
+      - Analysis of algorithmic efficiency in modern computing. # Add as many lines as needed
+    acquired_skills: # OPTIONAL: Skills used in this work (list of strings)
+      - Research # Add as many skills as needed
+      - Technical writing
+    keywords: # OPTIONAL: List of keywords
+      - algorithms # Add as many keywords as needed
+      - computer science
+      - efficiency
+      - research
+
+# Additional Skills Section - OPTIONAL (entire section can be omitted)
+# Organize your skills by category (Languages, Technical Skills, Soft Skills, etc.)
+additional_skills:
+  # NOTE: You can add as many skill categories as needed by copying the category structure below
+  - category: Languages # REQUIRED: Skill category name
+    specific_skills: # REQUIRED: List of skills in this category
+      # NOTE: You can add as many skills as needed by copying the skill structure below
+      - name: English # REQUIRED: Skill name
+        proficiency: Fluent # OPTIONAL: Proficiency level
+      - name: Spanish
+        proficiency: Intermediate
+      - name: French
+        proficiency: Beginner
+  - category: Technical Skills
+    specific_skills:
+      - name: Python
+        proficiency: Advanced
+      - name: JavaScript
+        proficiency: Advanced
+      - name: SQL
+        proficiency: Intermediate
+      - name: Docker
+        proficiency: Intermediate
+      - name: Git
+        proficiency: Advanced
+  - category: Soft Skills
+    specific_skills:
+      - name: Communication
+      - name: Teamwork
+      - name: Problem Solving
+      - name: Adaptability
+      - name: Time Management
+# ========================================
+# END OF RESUME CONFIGURATION
+# ========================================

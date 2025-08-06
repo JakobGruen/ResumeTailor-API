@@ -1,0 +1,181 @@
+# ========================================
+# RESUME CONFIGURATION FILE
+# ========================================
+# This file defines your complete resume data according to the ResumeTailor schema.
+# Fill in your information following the structure below.
+#
+#
+# REQUIRED vs OPTIONAL fields:
+# - Fields marked with "# REQUIRED" must be filled
+# - Fields marked with "# OPTIONAL" can be omitted or set to `null`
+# - Some sections can be entirely omitted if not applicable (omit by setting to `section: null`)
+#
+#
+# IMPORTANT: Maintain the YAML structure and indentation!
+# For YAML syntax help, see: https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+#
+#
+# TIPS FOR FILLING YOUR RESUME:
+#
+# 1. ADD MAXIMUM DETAIL: Include as much information as possible - the AI will filter what's relevant for each job
+# 2. DON'T WORRY ABOUT SOUNDING GOOD: Use simple bullet points, keywords, or basic descriptions - AI will polish the language
+# 3. INCLUDE EVERYTHING: Add all skills, experiences, projects, even if they seem minor - you never know what might be relevant
+# 4. USE SIMPLE LANGUAGE: Basic descriptions are fine (e.g., "used Python for data analysis" vs crafted prose)
+# 5. ADD NUMBERS/METRICS: Include any quantifiable results, even rough estimates (e.g., "improved by ~20%", "managed 5 people")
+# 6. LIST ALL TECHNOLOGIES: Include every tool, framework, language you've used, even briefly
+# 7. DON'T SELF-FILTER: Let the AI decide what's relevant - include experiences from different industries/roles
+# 8. BE FACTUAL ONLY: Focus on what you actually did, not how impressive it sounds
+#
+# Remember: This is RAW DATA for the AI to process - completeness matters more than polish!
+# The AI will tailor, refine, and make everything sound professional for specific jobs.
+#
+# ========================================
+
+# Personal Information Section
+# All fields in this section are OPTIONAL but recommended
+personal_information:
+  name: # OPTIONAL: Your first name
+  surname: # OPTIONAL: Your last name/surname
+  date_of_birth: # OPTIONAL: Format DD/MM/YYYY in quotes
+  address: # OPTIONAL: Your street address
+  city: # OPTIONAL: City of residence
+  country: # OPTIONAL: Country of residence
+  zip_code: # OPTIONAL: Postal/ZIP code in quotes
+  email: # OPTIONAL: Your email address
+  phone: # OPTIONAL: Phone with country prefix
+  linkedin: # OPTIONAL: Full LinkedIn URL
+  github: # OPTIONAL: GitHub profile URL
+
+# Education Section - OPTIONAL (entire section can be omitted)
+# List your educational background in reverse chronological order (most recent first)
+education:
+  # NOTE: You can add as many education entries as needed by copying the structure below
+  - degree: # REQUIRED: Degree name (e.g., BSc, MSc, PhD, Bachelor's)
+    institution: # REQUIRED: Name of educational institution
+    field_of_study: # REQUIRED: Your major/field of study
+    final_evaluation_grade: # OPTIONAL: Final GPA/grade (number or string)
+    honors: # OPTIONAL: Any honors received
+    start_year: # OPTIONAL: Year you started (integer)
+    year_of_completion: # OPTIONAL: Year you graduated (integer)
+
+    # Grading System Info - OPTIONAL (entire subsection can be omitted)
+    # Provides info for AI to judge course grades
+    grading_system:
+      country: # REQUIRED if grading_system provided
+      high: # REQUIRED if grading_system provided: highest possible grade
+      low: # REQUIRED if grading_system provided: lowest possible grade
+      passing_grade: # REQUIRED if grading_system provided: minimum passing grade
+
+    # Courses - OPTIONAL (entire subsection can be omitted)
+    courses:
+      # NOTE: Add as many courses as you want by copying the course structure
+      - name: # REQUIRED: Course name
+        description: # OPTIONAL: Course description
+        grade: # OPTIONAL: Grade received (number or string)
+        acquired_skills: # OPTIONAL: Skills learned (list of strings)
+          -  # Add as many skills as needed
+          -
+
+    # Educational Projects - OPTIONAL (entire subsection can be omitted)
+    projects:
+      # NOTE: Add as many educational projects as you want by copying the structure below
+      - name: # REQUIRED: Project name
+        description: # OPTIONAL: Project description
+        grade: # OPTIONAL: Grade/evaluation received
+        acquired_skills: # OPTIONAL: Skills learned (list of strings)
+          -  # Add as many skills as needed
+          -
+
+# Work Experience Section - OPTIONAL (entire section can be omitted)
+# List your work experience in reverse chronological order (most recent first)
+work_experience:
+  # NOTE: You can add as many work positions as needed by copying the structure below
+  - job_title: # REQUIRED: Your job title/position
+    company: # OPTIONAL: Company name
+    employment_type: # OPTIONAL: Employment type (Full-time, Part-time, Contract, etc.)
+    employment_period: # OPTIONAL: Period in quotes (e.g., "MM/YYYY - MM/YYYY" or "MM/YYYY - Present")
+    location: # OPTIONAL: Job location
+    industry: # OPTIONAL: Industry sector
+    responsibilities: # OPTIONAL: Job duties (list of strings)
+      -  # Add as many responsibilities as needed
+      -
+    acquired_skills: # OPTIONAL: Technical skills used (list of strings)
+      -  # Add as many skills as needed
+      -
+    achievements: # OPTIONAL: Notable accomplishments (list of strings)
+      -  # Add as many achievements as needed
+
+# Projects Section - OPTIONAL (entire section can be omitted)
+# List your personal/side projects that showcase your skills
+projects:
+  # NOTE: You can add as many projects as needed by copying the structure below
+  - name: # REQUIRED: Project name
+    link: # OPTIONAL: Link to project (GitHub, website, etc.)
+    platform: # OPTIONAL: Platform where hosted (GitHub, personal website, etc.)
+    description: # OPTIONAL: Brief project description
+      -  # Add as many lines as needed
+      -
+    acquired_skills: # OPTIONAL: Technical skills used (list of strings)
+      -  # Add as many skills as needed
+      -
+    achievements: # OPTIONAL: Notable outcomes/recognition (list of strings)
+      -  # Add as many achievements as needed
+      -
+
+# Achievements Section - OPTIONAL (entire section can be omitted)
+# List notable accomplishments, awards, or recognitions
+achievements:
+  # NOTE: You can add as many achievements as needed by copying the structure below
+  - title: # REQUIRED: Achievement title
+    description: # REQUIRED: Achievement description
+      -  # Add as many lines as needed
+      -
+    relevance: # OPTIONAL: Relevance to career/academic growth
+      -  # Add as many lines as needed
+      -
+
+# Certifications Section - OPTIONAL (entire section can be omitted)
+# List professional certifications and credentials
+certifications:
+  # NOTE: You can add as many certifications as needed by copying the structure below
+  - name: # REQUIRED: Certification name
+    issuing_organization: # REQUIRED: Organization that issued the certification
+    link: # OPTIONAL: Verification link
+    description: # OPTIONAL: Certification description (list of strings)
+      -  # Add as many lines as needed
+      -
+    acquired_skills: # OPTIONAL: Skills gained from certification (list of strings)
+      -  # Add as many skills as needed
+      -
+
+# Publications Section - OPTIONAL (entire section can be omitted)
+# List academic papers, articles, or other publications you've authored
+publications:
+  # NOTE: You can add as many publications as needed by copying the structure below
+  - title: # REQUIRED: Publication title
+    authors: # REQUIRED: All authors (as single string)
+    publisher: # OPTIONAL: Publisher/Journal name
+    publication_date: # OPTIONAL: Publication date (YYYY-MM-DD format)
+    link: # OPTIONAL: DOI or publication link
+    description: # OPTIONAL: description (list of strings)
+      -  # Add as many lines as needed
+      -
+    acquired_skills: # OPTIONAL: Skills used in this work (list of strings)
+      -  # Add as many skills as needed
+      -
+    keywords: # OPTIONAL: List of keywords
+      -  # Add as many keywords as needed
+      -
+
+# Additional Skills Section - OPTIONAL (entire section can be omitted)
+# Organize your skills by category (Languages, Technical Skills, Soft Skills, etc.)
+additional_skills:
+  # NOTE: You can add as many skill categories as needed by copying the category structure below
+  - category: # REQUIRED: Skill category name
+    specific_skills: # REQUIRED: List of skills in this category
+      # NOTE: You can add as many skills as needed by copying the skill structure below
+      - name: # REQUIRED: Skill name
+        proficiency: # OPTIONAL: Proficiency level
+# ========================================
+# END OF RESUME CONFIGURATION
+# ========================================

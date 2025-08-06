@@ -1,0 +1,226 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "AutoApply Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Application - Initialize",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"application_type\": \"job_application\",\n  \"steps\": [\"job_profile\", \"resume\", \"cover_letter\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/application/initialize",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["application", "initialize"]
+        }
+      }
+    },
+    {
+      "name": "Application - Complete",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"action\": \"save\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/application/complete",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["application", "complete"]
+        }
+      }
+    },
+    {
+      "name": "Job Profile - Extract",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"job_description\": \"{{job_description}}\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/job-profile/generate",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["job-profile", "generate"]
+        }
+      }
+    },
+    {
+      "name": "Job Profile - Edit",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"user_edited_profile\": null,\n  \"suggestion\": \"your_suggestion\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/job-profile/edit",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["job-profile", "edit"]
+        }
+      }
+    },
+    {
+      "name": "Resume - Generate",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/resume/generate",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["resume", "generate"]
+        }
+      }
+    },
+    {
+      "name": "Cover Letter - Generate",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/cover-letter/generate",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["cover-letter", "generate"]
+        }
+      }
+    },
+    {
+      "name": "Cover Letter - Edit",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"editing_suggestions\": \"your_suggestions\",\n  \"user_edited_cover_letter\": null\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/cover-letter/edit",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["cover-letter", "edit"]
+        }
+      }
+    },
+    {
+      "name": "Data - Full Resume",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/data/full_resume.json",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["data", "full_resume.json"]
+        }
+      }
+    },
+    {
+      "name": "Data - History",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/data/history",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["data", "history"]
+        }
+      }
+    },
+    {
+      "name": "Data - Resume HTML",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/data/{{session_id}}/resume.html",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["data", "{{session_id}}", "resume.html"]
+        }
+      }
+    },
+    {
+      "name": "Data - Cover Letter HTML",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/data/{{session_id}}/cover_letter.html",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["data", "{{session_id}}", "cover_letter.html"]
+        }
+      }
+    },
+    {
+      "name": "Data - Resume PDF",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/data/{{session_id}}/resume.pdf",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["data", "{{session_id}}", "resume.pdf"]
+        }
+      }
+    },
+    {
+      "name": "Data - Cover Letter PDF",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/data/{{session_id}}/cover_letter.pdf",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["data", "{{session_id}}", "cover_letter.pdf"]
+        }
+      }
+    },
+    {
+      "name": "Data - Delete by ID",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:8080/data/{{session_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["data", "{{session_id}}"]
+        }
+      }
+    }
+  ]
+}

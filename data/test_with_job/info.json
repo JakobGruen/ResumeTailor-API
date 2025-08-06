@@ -1,0 +1,13 @@
+{
+  "application_type": "job_application",
+  "steps": [
+    "job_profile",
+    "resume",
+    "cover_letter"
+  ],
+  "created_at": "2025-08-06",
+  "company": "Example Corp",
+  "position": "MLOps Engineer",
+  "job_titles": null,
+  "focus_aspects": null
+}

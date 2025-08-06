@@ -1,0 +1,60 @@
+[project]
+name = "resumetailor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.2.1",
+    "fastapi>=0.110.0",
+    "langchain>=0.3.25",
+    "langchain-openai>=0.3.22",
+    "langgraph>=0.4.8",
+    "openai==1.98.0",
+    "pydantic>=2.11.5",
+    "python-dotenv>=1.1.0",
+    "pyyaml>=6.0.2",
+    "rich>=14.0.0",
+    "typer>=0.16.0",
+    "uvicorn[standard]>=0.20.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.0",
+    "pytest-cov>=6.2.1",
+    "pytest-xdist>=3.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["resumetailor"]
+
+[project.scripts]
+resumetailor = "resumetailor.main:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "-n", "auto",  
+]
+markers = [
+    "api: marks tests for API services",
+    "session: marks tests that test session management",
+    "resume: marks tests that test resume generation",
+    "job_profile: marks tests that test job profile generation",
+    "cover_letter: marks tests that test cover letter generation",
+    "data: marks tests for data management",
+    "langsmith: marks tests that require LangSmith services",
+    "docker: marks tests that require Docker services",
+]

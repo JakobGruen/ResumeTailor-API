@@ -1,0 +1,51 @@
+{
+  "company": "Example Corp",
+  "position": "MLOps Engineer",
+  "job_type": null,
+  "responsibilities": null,
+  "technical_skills": [
+    "Machine Learning infrastructure management",
+    "DevOps practices",
+    "Containerization",
+    "Microservices architecture",
+    "Serverless architectures",
+    "CI/CD pipelines"
+  ],
+  "required_technologies": [
+    "AWS",
+    "SageMaker",
+    "Athena",
+    "S3",
+    "EC2",
+    "RDS",
+    "Glue",
+    "Lambda",
+    "Step Functions",
+    "EKS",
+    "ECS",
+    "Docker",
+    "Git",
+    "Ansible",
+    "Terraform",
+    "CloudFormation",
+    "Python"
+  ],
+  "soft_skills": [
+    "Strong communication",
+    "Problem-solving"
+  ],
+  "languages": null,
+  "additional_requirements": [
+    "Experience with large data processing technologies (Hadoop, Spark, SQL)",
+    "Familiarity with data science tools (R, Python, Jupyter)",
+    "Multi-cloud experience (AWS, Azure, GCP)",
+    "Mentoring experience",
+    "Knowledge of SAFe agile principles"
+  ],
+  "educational_qualifications": [
+    "Bachelor's degree in a relevant field"
+  ],
+  "certifications": [],
+  "professional_experience": "Experience in MLOps, software engineering, and deployment of ML solutions in production environments.",
+  "role_evolution": "Potential growth into leadership roles within AI and ML teams, as well as opportunities to work on emerging technologies in the field."
+}
