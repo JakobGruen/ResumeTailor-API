@@ -1,5 +1,7 @@
 # ResumeTailor-API
 
+> **Note**: This project is the backend API for [ResumeTailor](https://github.com/JakobGruen/ResumeTailor), a complete resume tailoring application. While this API is fully functional and can be used standalone, it's primarily designed to serve as the backend for the main ResumeTailor frontend application.
+
 ResumeTailor-API is an intelligent resume tailoring API that leverages Large Language Models (LLMs) to automatically adapt your resume for specific job applications. Built as a RESTful web service, it extracts job requirements from job descriptions, tailors your resume content to match, and generates professional cover letters, all while maintaining accuracy and relevance.
 
 ## ✨ Features
@@ -36,8 +38,8 @@ ResumeTailor-API is an intelligent resume tailoring API that leverages Large Lan
 ResumeTailor follows a microservices architecture:
 
 - **ResumeTailor API**: Main application service (FastAPI)
-- **ResumeGen API**: Document generation service (Node.js + Express)
-- **PDF Service**: PDF rendering service (Puppeteer)
+- **ResumeGen API**: Document generation service (FastAPI)
+- **PDF Service**: PDF rendering service (Node.js + Express + Puppeteer)
 
 ## 🚀 Quick Start
 
@@ -51,25 +53,27 @@ ResumeTailor follows a microservices architecture:
 1. **Clone the repository**:
 
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/JakobGruen/ResumeTailor-API.git
    cd ResumeTailor-cli
    ```
 
-2. **Configure environment variables**:
+. **Set up environment:**
+
+Copy the example .env:
+
+```bash
+cp .env.example .env
+```
+
+Then, edit .env with your OpenAI API key.
+
+3. **Set up resume data**:
 
    ```bash
-   cp .env.example .env
-   # Edit .env with your OpenAI API key and other settings
-   ```
-
-3. **Set up your resume data**:
-
-   ```bash
-   # Copy example resume (contains sample data)
    cp data/full_resume.yaml.example data/full_resume.yaml
    ```
 
-   **Note**: This copies the resume with example data from Alex Smith. See the Configuration section below to set up your own resume data.
+   **Note:** This copies the resume with example data. See the **Configuration** section below to set up your own resume data.
 
 4. **Start all services**:
 
@@ -430,7 +434,7 @@ pytest -m "docker"       # Docker tests
 
 ## 📝 License
 
-[Add your license information here]
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Troubleshooting
 
