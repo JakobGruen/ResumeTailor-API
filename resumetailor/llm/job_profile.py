@@ -32,7 +32,6 @@ class JobState(MessagesState):
 
 class JobProfileExtractor:
     _model_type = "LLM_MODEL_SUMMARY"
-    _temperature = 0.4
 
     def __init__(self):
         self._create_model()
@@ -41,7 +40,6 @@ class JobProfileExtractor:
     def _create_model(self):
         self.model_job_profile = ChatOpenAI(
             model=os.getenv(self._model_type),
-            temperature=self._temperature,
             use_responses_api=True,
         ).with_structured_output(JobProfile)
 

@@ -45,12 +45,10 @@ def score_content(system_message: str, prompt: str, **kwargs) -> Score:
 
     model_grading = ChatOpenAI(
         model=os.environ.get("LLM_MODEL_GRADING"),
-        temperature=0.8,
         use_responses_api=True,
     )
     model_extract = ChatOpenAI(
         model=os.environ.get("LLM_MODEL_GRADING"),
-        temperature=0.4,
         use_responses_api=True,
     ).with_structured_output(Score)
     grading_messages = ChatPromptTemplate.from_messages(

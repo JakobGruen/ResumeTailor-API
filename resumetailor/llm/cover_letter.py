@@ -37,7 +37,6 @@ class CoverLetterState(MessagesState):
 
 class CoverLetterWriter:
     _model_type = "LLM_MODEL_COVER_LETTER"
-    _temperature = 0.4
 
     def __init__(self):
         self._create_model()
@@ -124,7 +123,6 @@ class CoverLetterWriter:
     def _create_model(self):
         self.model = ChatOpenAI(
             model=os.getenv(self._model_type),
-            temperature=self._temperature,
             use_responses_api=True,
         )
 

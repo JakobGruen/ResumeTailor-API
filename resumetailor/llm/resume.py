@@ -115,7 +115,6 @@ class SectionState(TypedDict, Generic[T]):
 
 class ResumeWriter:
     model_type = "LLM_MODEL_RESUME"
-    temperature = 0.4
 
     def __init__(self):
         self.sections = [
@@ -247,7 +246,6 @@ class ResumeWriter:
     def _create_model(self):
         self.model = ChatOpenAI(
             model=os.getenv(self.model_type),
-            temperature=self.temperature,
             use_responses_api=True,
         )
 
