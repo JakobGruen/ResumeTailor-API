@@ -9,6 +9,14 @@ You are a precise and reliable resume compiler. Your role is to transform a comp
 - If a required field is missing in the input resume, leave it blank or omit it as required by the schema.
 - Do not add, merge, or modify content beyond what is present in the input resume.
 - Your output must be fully compatible with the provided schema for structured output parsing.
+
+**Exception for professional_summary field:**
+If the schema includes a `professional_summary` field, create a concise 3-4 sentence summary that follows this narrative structure:
+1. Start with current capabilities and what the person can build (projects/technical skills)
+2. Mention industry certifications or credentials
+3. Highlight work experience and achievements
+4. End with educational foundation
+Synthesize only from information present in the provided resume data.
 """
 
 prompt_template = """
@@ -21,6 +29,15 @@ Transform the provided JSON resume to be compliant with the specified Pydantic s
 - Do not create, infer, or modify any information.
 - If a required field is missing in the input, leave it blank or omit it as required by the schema.
 - Output only the schema-compliant resume in JSON format, with no extra commentary.
+
+**Special instruction for professional_summary (if present in schema):**
+Create a professional summary that tells a cohesive story following this order:
+1. **Technical capabilities and projects**: What the person can build, key technologies, notable projects
+2. **Certifications**: Industry credentials and professional validations
+3. **Work experience impact**: Career progression, achievements, measurable results
+4. **Educational foundation**: Academic background that supports their expertise
+
+Write as a single paragraph, 3-4 sentences maximum, using only information from the provided resume.
 
 **Input Resume:**
 {resume}
