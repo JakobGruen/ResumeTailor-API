@@ -13,6 +13,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from resumetailor.models import JobProfile
 from resumetailor.llm.prompts import job_profile_prompts as prompts
 from resumetailor.services.utils import model_to_str, str_to_model
+from resumetailor.services.retry import RetryableChain
 
 load_dotenv()
 
@@ -52,7 +53,8 @@ class JobProfileExtractor:
                 ]
             )
             chain = prompt | self.model_job_profile
-            response = chain.invoke(state)
+            retryable_chain = RetryableChain(chain)
+            response = retryable_chain.invoke(state)
             message = AIMessage(
                 "Here is the extracted job profile:\n\n"
                 f"```json\n{model_to_str(response)}\n```"
@@ -68,7 +70,8 @@ class JobProfileExtractor:
                 ]
             )
             chain = prompt | self.model_job_profile
-            response = chain.invoke(state)
+            retryable_chain = RetryableChain(chain)
+            response = retryable_chain.invoke(state)
             message = AIMessage(
                 "Here is the extracted job profile:\n\n"
                 f"```json\n{model_to_str(response)}\n```"

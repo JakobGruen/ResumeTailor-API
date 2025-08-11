@@ -56,5 +56,8 @@ markers = [
     "cover_letter: marks tests that test cover letter generation",
     "data: marks tests for data management",
     "langsmith: marks tests that require LangSmith services",
+    "resumegen: marks tests that require ResumeGen services",
     "docker: marks tests that require Docker services",
+    "integration: marks integration tests",
+    "performance: marks performance tests",
 ]

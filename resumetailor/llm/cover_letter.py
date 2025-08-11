@@ -14,6 +14,7 @@ load_dotenv()
 from resumetailor.models import CoverLetter
 from resumetailor.llm.prompts import cover_letter_prompts as prompts
 from resumetailor.services.utils import model_to_str
+from resumetailor.services.retry import RetryableChain
 import uuid
 
 
@@ -135,10 +136,13 @@ class CoverLetterWriter:
                 ]
             )
             chain = prompt | self.model
-            result = chain.invoke(state)
-            cover_letter = self.model.with_structured_output(CoverLetter).invoke(
-                [result]
-            )
+            retryable_chain = RetryableChain(chain)
+            result = retryable_chain.invoke(state)
+            
+            structured_chain = self.model.with_structured_output(CoverLetter)
+            retryable_structured_chain = RetryableChain(structured_chain)
+            cover_letter = retryable_structured_chain.invoke([result])
+            
             return {
                 "messages": [result],
                 "cover_letter": cover_letter,
@@ -153,10 +157,13 @@ class CoverLetterWriter:
                 ]
             )
             chain = prompt | self.model
-            result = chain.invoke(state)
-            cover_letter = self.model.with_structured_output(CoverLetter).invoke(
-                [result]
-            )
+            retryable_chain = RetryableChain(chain)
+            result = retryable_chain.invoke(state)
+            
+            structured_chain = self.model.with_structured_output(CoverLetter)
+            retryable_structured_chain = RetryableChain(structured_chain)
+            cover_letter = retryable_structured_chain.invoke([result])
+            
             return {
                 "messages": [result],
                 "cover_letter": cover_letter,

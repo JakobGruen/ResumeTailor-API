@@ -27,6 +27,7 @@ from resumetailor.models.resume import (
 )
 from resumetailor.llm.prompts import resume_prompts as prompts
 from resumetailor.services.utils import model_to_str
+from resumetailor.services.retry import RetryableChain, retry_with_exponential_backoff
 
 load_dotenv()
 
@@ -366,6 +367,7 @@ class ResumeWriter:
                 [("system", system_message), ("human", section_prompt)]
             )
             chain = prompt | self.model.with_structured_output(ThisSection)
+            retryable_chain = RetryableChain(chain)
             additional_data = {
                 "section_name": section_key,
                 "candidate_data": "\n".join(
@@ -375,7 +377,7 @@ class ResumeWriter:
                     ]
                 ),
             }
-            result = chain.invoke({**state, **additional_data})
+            result = retryable_chain.invoke({**state, **additional_data})
             message = AIMessage(
                 f"```json\n{result.section_data}\n```\n\n**Explanation of Changes:**\n{result.explanation}"
             )
@@ -391,10 +393,11 @@ class ResumeWriter:
                 ]
             )
             chain = prompt | self.model.with_structured_output(ThisSection)
+            retryable_chain = RetryableChain(chain)
             additional_data = {
                 "section_name": section_key,
             }
-            result = chain.invoke({**state, **additional_data})
+            result = retryable_chain.invoke({**state, **additional_data})
             message = AIMessage(
                 f"```json\n{result.section_data}\n```\n\n**Explanation of Changes:**\n{result.explanation}"
             )
@@ -429,7 +432,8 @@ class ResumeWriter:
             [("system", system_message), ("human", prompt_template)]
         )
         chain = prompt | self.model.with_structured_output(OutputResume)
-        output_resume = chain.invoke({"resume": resume})
+        retryable_chain = RetryableChain(chain)
+        output_resume = retryable_chain.invoke({"resume": resume})
         return output_resume
 
     def _create_resume_editor(self):

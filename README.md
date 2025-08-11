@@ -129,10 +129,10 @@ cp .env.example .env
 
 **LLM Models:**
 
-- **`LLM_MODEL_SUMMARY`**: Model for job description summarization (default: "gpt-4o-mini")
-- **`LLM_MODEL_RESUME`**: Model for resume generation (default: "gpt-4o-mini")
-- **`LLM_MODEL_COVER_LETTER`**: Model for cover letter generation (default: "gpt-4o-mini")
-- **`LLM_MODEL_GRADING`**: Model for content evaluation (default: "gpt-4o-mini")
+- **`LLM_MODEL_SUMMARY`**: Model for job description summarization (default: "gpt-5-mini")
+- **`LLM_MODEL_RESUME`**: Model for resume generation (default: "gpt-5-mini")
+- **`LLM_MODEL_COVER_LETTER`**: Model for cover letter generation (default: "gpt-5-mini")
+- **`LLM_MODEL_GRADING`**: Model for content evaluation (default: "gpt-5-mini")
 
 **Development/Testing:**
 
@@ -141,7 +141,15 @@ cp .env.example .env
 - **`LANGSMITH_API_KEY`**: LangSmith API key for tracing
 - **`LANGSMITH_PROJECT`**: LangSmith project name for organizing traces
 
-**Note**: You can use different models for different tasks. For production use, consider `gpt-4o` for higher quality output, or stick with `gpt-4o-mini` for cost efficiency.
+**Retry Configuration:**
+
+- **`RETRY_MAX_RETRIES`**: Maximum retry attempts for rate limits (default: 5)
+- **`RETRY_BASE_DELAY`**: Initial retry delay in seconds (default: 1.0)
+- **`RETRY_MAX_DELAY`**: Maximum retry delay cap in seconds (default: 300.0)
+- **`RETRY_BACKOFF_FACTOR`**: Exponential backoff multiplier (default: 2.0)
+- **`RETRY_JITTER`**: Enable random jitter to prevent thundering herd (default: true)
+
+**Note**: You can use different models for different tasks. For production use, consider `gpt-5` for higher quality output, or stick with `gpt-5-mini` for cost efficiency.
 
 ## 📖 Usage
 
@@ -389,22 +397,22 @@ ResumeTailor-cli/
 Run the test suite with parallel execution:
 
 ```bash
-# Using pytest directly
-pytest -n auto
+# Using uv (recommended)
+uv run python -m pytest -n auto
 
-# Or using uv
-uv run pytest
+# Or using pytest directly (if available in PATH)
+python -m pytest -n auto
 
 # Run specific test categories
-pytest -m "api"          # API tests only
-pytest -m "job_profile"  # Job profile tests
-pytest -m "resume"       # Resume-related tests
-pytest -m "cover_letter" # Cover letter tests
-pytest -m "session"      # Session managements tests
-pytest -m "data"         # Data management tests
-pytest -m "langsmith"    # Tests that are tracked by LangSmith
-pytest -m "resumegen"    # Tests that require resumegen to be running on port 8000
-pytest -m "docker"       # Docker tests
+uv run python -m pytest -m "api"          # API tests only
+uv run python -m pytest -m "job_profile"  # Job profile tests
+uv run python -m pytest -m "resume"       # Resume-related tests
+uv run python -m pytest -m "cover_letter" # Cover letter tests
+uv run python -m pytest -m "session"      # Session managements tests
+uv run python -m pytest -m "data"         # Data management tests
+uv run python -m pytest -m "langsmith"    # Tests that are tracked by LangSmith
+uv run python -m pytest -m "resumegen"    # Tests that require ResumeGen service running
+uv run python -m pytest -m "docker"       # Docker tests
 ```
 
 ## 📋 Dependencies
@@ -432,6 +440,45 @@ pytest -m "docker"       # Docker tests
 6. Push to the branch: `git push origin feature-name`
 7. Submit a pull request
 
+## 🔄 Rate Limit Handling
+
+ResumeTailor includes a robust retry mechanism to handle OpenAI API rate limits automatically:
+
+### Features
+
+- **Exponential Backoff**: Delays increase exponentially between retries (1s → 2s → 4s → 8s → 16s)
+- **Smart Retry-After**: Respects OpenAI's suggested wait times from rate limit error messages
+- **Jitter**: Adds randomness to prevent multiple instances from retrying simultaneously
+- **Configurable**: All retry parameters can be customized via environment variables
+
+### How It Works
+
+When the application encounters a rate limit error (HTTP 429), it:
+
+1. **Extracts timing**: Parses "try again in X.Xs" from the error message
+2. **Waits appropriately**: Uses the suggested wait time or exponential backoff
+3. **Retries automatically**: Continues the original operation seamlessly
+4. **Logs progress**: Provides visibility into retry attempts
+
+### Configuration
+
+Customize retry behavior in your `.env` file:
+
+```bash
+RETRY_MAX_RETRIES=5        # Maximum retry attempts
+RETRY_BASE_DELAY=1.0       # Initial delay in seconds
+RETRY_MAX_DELAY=300.0      # Maximum delay cap (5 minutes)
+RETRY_BACKOFF_FACTOR=2.0   # Exponential multiplier
+RETRY_JITTER=true          # Add randomness to delays
+```
+
+### Rate Limit Best Practices
+
+- **Monitor Usage**: Check your OpenAI dashboard for rate limit status
+- **Adjust Models**: Consider `gpt-5-mini` for higher rate limits
+- **Batch Operations**: Process multiple items together when possible
+- **Scale Gradually**: Increase usage gradually to avoid hitting limits
+
 ## 📝 License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
@@ -440,25 +487,32 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ### Common Issues
 
-1. **OpenAI API Errors**:
+1. **OpenAI API Rate Limits**:
+
+   - **Automatic Retry**: The application automatically retries rate-limited requests
+   - **Monitor Logs**: Check logs for retry attempts and timing information
+   - **Adjust Configuration**: Tune `RETRY_*` environment variables if needed
+   - **Check Dashboard**: Review rate limit status in your OpenAI account
+
+2. **OpenAI API Errors**:
 
    - Ensure your API key is set correctly
    - Check your OpenAI account has sufficient credits
    - Verify the API key has proper permissions
 
-2. **ResumeGen Service Connection Issues**:
+3. **ResumeGen Service Connection Issues**:
 
    - Ensure ResumeGen services are running on ports 3000 and 8000
    - Check the `RESUMEGEN_API_URL` environment variable
    - Verify network connectivity between services
 
-3. **Docker Build Issues**:
+4. **Docker Build Issues**:
 
    - Check Docker has sufficient resources allocated
    - Verify internet connectivity for downloading dependencies
    - Ensure Docker daemon is running properly
 
-4. **PDF Generation Failures**:
+5. **PDF Generation Failures**:
    - Ensure PDF service is running and healthy
    - Check Chrome/Chromium is properly installed in PDF service container
    - Verify sufficient memory allocation for PDF rendering
