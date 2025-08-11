@@ -5,29 +5,28 @@ from resumetailor.models.personal_info import PersonalInfo
 
 
 class CoverLetter(BaseModel):
-    personal_information: PersonalInfo | None = Field(
-        None, description="Personal information of the candidate."
+    personal_information: PersonalInfo = Field(
+        ..., description="Personal information of the candidate."
     )
-    company: str | None = Field(
-        None,
+    company: str = Field(
+        ...,
         description="The name of the company to which the letter is addressed.",
     )
-    position: str | None = Field(
-        None, description="The position for which the candidate is applying."
+    position: str = Field(
+        ..., description="The position for which the candidate is applying."
     )
-    opening_paragraph: Annotated[
-        str,
-        Field(
-            description="The opening paragraph introducing the candidate and stating the position applied for."
-        ),
-    ]
-    body_paragraphs: Annotated[
-        List[str],
-        Field(
-            description="A list of body paragraphs, each highlighting relevant qualifications, experiences, and alignment with the job requirements."
-        ),
-    ]
-    closing_paragraph: Annotated[
-        str,
-        Field(description="The closing paragraph expressing enthusiasm and gratitude."),
-    ]
+    addressee: str | None = Field(
+        None,
+        description="The name of the person to whom the letter is addressed. (optional, defaults to `Hiring Team`)",
+    )
+    opening_paragraph: str = Field(
+        ...,
+        description="The opening paragraph introducing the candidate and stating the position applied for.",
+    )
+    body_paragraphs: list[str] = Field(
+        ...,
+        description="A list of body paragraphs, each highlighting relevant qualifications, experiences, and alignment with the job requirements.",
+    )
+    closing_paragraph: str = Field(
+        ..., description="The closing paragraph expressing enthusiasm and gratitude."
+    )
