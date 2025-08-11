@@ -62,10 +62,10 @@ class Degree(BaseModel):
         None, description="Final evaluation or grade."
     )
     honors: str | None = Field(None, description="Honors received, if any.")
-    start_year: int | None = Field(
+    start_year: str | None = Field(
         None, description="Start year of the degree program."
     )
-    year_of_completion: int | None = Field(
+    year_of_completion: str | None = Field(
         None, description="Year of completion of the degree."
     )
     grading_system: EduGradingSystem | None = Field(
