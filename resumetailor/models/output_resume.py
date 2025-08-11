@@ -13,7 +13,7 @@ class EduCourseProject(BaseModel):
     """
 
     name: str = Field(..., description="Name of the course or project.")
-    grade: str | float | None = Field(
+    grade: str | None = Field(
         None, description="Grade received in the course or project (optional)."
     )
 
@@ -30,7 +30,7 @@ class Degree(BaseModel):
     field_of_study: str = Field(
         ..., description="Field of study (e.g., Computer Science)."
     )
-    final_evaluation_grade: str | float | None = Field(
+    final_evaluation_grade: str | None = Field(
         None, description="Final evaluation or grade (otional)."
     )
     honors: str | None = Field(None, description="Honors received, if any.")

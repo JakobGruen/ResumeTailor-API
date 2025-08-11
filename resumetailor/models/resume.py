@@ -14,7 +14,7 @@ class EduCourse(BaseModel):
     description: str | None = Field(
         None, description="Brief description of the course content."
     )
-    grade: str | float | None = Field(None, description="Grade received in the course.")
+    grade: str | None = Field(None, description="Grade received in the course.")
     acquired_skills: str | list[str] | None = Field(
         None, description="Sentence or list of skills acquired in the course."
     )
@@ -29,9 +29,7 @@ class EduProject(BaseModel):
     description: str | None = Field(
         None, description="Brief description of the project."
     )
-    grade: str | float | None = Field(
-        None, description="Grade or evaluation of the project."
-    )
+    grade: str | None = Field(None, description="Grade or evaluation of the project.")
     acquired_skills: str | list[str] | None = Field(
         None, description="Sentence or list of skills acquired in the course."
     )
@@ -43,9 +41,9 @@ class EduGradingSystem(BaseModel):
     """
 
     country: str = Field(..., description="Country where the grading system is used.")
-    high: str | float = Field(..., description="High end of the grading scale.")
-    low: str | float = Field(..., description="Low end of the grading scale.")
-    passing_grade: str | float = Field(..., description="Passing grade in the system.")
+    high: str = Field(..., description="High end of the grading scale.")
+    low: str = Field(..., description="Low end of the grading scale.")
+    passing_grade: str = Field(..., description="Passing grade in the system.")
 
 
 class Degree(BaseModel):
@@ -60,7 +58,7 @@ class Degree(BaseModel):
     field_of_study: str = Field(
         ..., description="Field of study (e.g., Computer Science)."
     )
-    final_evaluation_grade: str | float | None = Field(
+    final_evaluation_grade: str | None = Field(
         None, description="Final evaluation or grade."
     )
     honors: str | None = Field(None, description="Honors received, if any.")

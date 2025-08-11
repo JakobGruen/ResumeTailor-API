@@ -1,0 +1,28 @@
+# Subject line (50 chars max) - use imperative mood
+# |<----   Preferably under 50 chars   ---->|
+
+# Blank line separates subject from body
+
+# Body: Explain what and why (wrap at 72 chars)
+# |<----   Try to limit each line to 72 characters   ---->|
+# - Use bullet points for multiple changes
+# - Focus on the "what" and "why", not the "how"
+# - Reference issues/tickets if applicable
+
+# Examples of good subject lines:
+# Add retry mechanism for OpenAI rate limits
+# Fix memory leak in session management
+# Update documentation for deployment
+# Remove deprecated authentication methods
+
+# For breaking changes, add:
+# BREAKING CHANGE: describe the breaking change
+
+# For conventional commits (optional):
+# feat: add new feature
+# fix: bug fix
+# docs: documentation changes
+# style: code style changes (formatting, etc)
+# refactor: code refactoring
+# test: adding or updating tests
+# chore: maintenance tasks
